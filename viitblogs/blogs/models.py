@@ -24,5 +24,25 @@ class Blogs(models.Model):
         self.description_html = misaka.html(self.description)
         super().save(*args,**kwargs)
 
+    def get_absolute_url(self):
+        return reverse('blogs:blog_detail', kwargs={'slug': self.slug})
+
+    class Meta:
+        ordering = ['-created_at']
+
+class Comments(models.Model):
+    blog = models.ForeignKey(Blogs,on_delete=models.CASCADE, related_name = 'comments')
+    writer = models.CharField(max_length=150)
+    text = models.TextField(blank=False)
+    text_html = models.TextField(editable=False,blank=False)
+    created_at = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return self.blog.title + ' --> ' + self.writer
+
+    def save(self,*args,**kwargs):
+        self.text_html = misaka.html(self.text)
+        super().save(*args,**kwargs)
+
     class Meta:
         ordering = ['-created_at']

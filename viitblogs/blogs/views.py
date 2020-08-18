@@ -1,10 +1,12 @@
-from django.shortcuts import render
-from .models import Blogs
+from django.shortcuts import render,get_object_or_404,redirect
+from .models import Blogs,Comments
 from django.views import generic
 from django.views.generic import  (View,TemplateView,
                                   ListView,DetailView,
                                   CreateView,UpdateView,
                                   DeleteView)
+from django.urls import reverse
+from django.http import HttpResponseRedirect,HttpResponse
 
 # Create your views here.
 def index(request):
@@ -20,4 +22,21 @@ class blog_detail(DetailView):
     template_name = 'blogs/blog_detail.html'
 
 def upvote(request,slug):
-    
+    blog = get_object_or_404(Blogs,slug=slug)
+    blog.upvotes += 1
+    blog.save()
+    return HttpResponseRedirect(reverse('blogs:blog_detail',kwargs={'slug':blog.slug}))
+
+def add_comments(request,slug):
+    blog = get_object_or_404(Blogs,slug=slug)
+    if request.method == "POST":
+        try:
+            writer = request.POST.get('writer')
+            text = request.POST.get('text')
+            obj = Comments.objects.create(blog = blog, writer=writer,text=text)
+            obj.save()
+            print(obj)
+            return HttpResponseRedirect(reverse('blogs:blog_detail',kwargs={'slug':blog.slug}))
+        except:
+            message.error(request,'Something went wrong!')
+            return HttpResponseRedirect(reverse('blogs:blog_detail',kwargs={'slug':blog.slug}))
