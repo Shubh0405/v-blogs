@@ -3,7 +3,10 @@
 
 <div class="container">
   {% for blog in bloglist %}
-    
+    <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail" style="height:100px;width:100px;">
+    <p><b>{{ blog.title }}</b></p>
+    <p>{{ blog.description_html|safe }} </p>
+    <a class="btn btn-primary" href="{% url 'blogs:blog_detail' slug=blog.slug %}">Read</a>
   {% endfor %}
 </div>
 

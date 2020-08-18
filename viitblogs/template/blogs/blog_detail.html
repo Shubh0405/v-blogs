@@ -1,0 +1,14 @@
+{% extends 'blogs/base.html' %}
+{% block content %}
+
+<div class="container">
+  <h1>{{ blog.title }}</h1>
+  <h3>Written by: {{ blog.author }}</h3>
+  <p>Created at: {{ blog.created_at }}</p>
+  <hr>
+  {{ blog.body|safe }}
+  <hr>
+  <p>{{ blog.upvotes }} Upvotes</p>
+</div>
+
+{% endblock %}
