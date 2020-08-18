@@ -16,10 +16,15 @@ def blog_list(request):
     bloglist = Blogs.objects.all()
     return render(request,'blogs/blog_list.html',{'bloglist':bloglist})
 
-class blog_detail(DetailView):
-    context_object_name = 'blog'
-    model = Blogs
-    template_name = 'blogs/blog_detail.html'
+# class blog_detail(DetailView):
+#     context_object_name = 'blog'
+#     model = Blogs
+#     template_name = 'blogs/blog_detail.html'
+
+def blog_detail(request,slug):
+    blog = get_object_or_404(Blogs,slug=slug)
+    comments = Comments.objects.filter(blog=blog)
+    return render(request,'blogs/blog_detail.html',{'blog':blog,'comments':comments})
 
 def upvote(request,slug):
     blog = get_object_or_404(Blogs,slug=slug)

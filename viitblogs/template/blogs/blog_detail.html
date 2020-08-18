@@ -12,6 +12,15 @@
   <a class="btn btn-primary" href="{% url 'blogs:upvote' slug=blog.slug %}"> {{ blog.upvotes }} Upvotes </a>
   <a class="btn btn-primary" href="" data-target="#ModalCreateComment" data-toggle="modal">Add Comment</a>
 
+  {% for comment in comments %}
+  <hr>
+    <p>{{ comment.text_html|safe }}</p>
+    <p>By: {{ comment.writer }}</p>
+    <p>{{ comment.created_at }}</p>
+  {% endfor %}
+
+
+
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalCreateComment" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
