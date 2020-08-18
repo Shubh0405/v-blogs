@@ -16,6 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR,"template")
+MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -39,7 +40,40 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogs',
+    'ckeditor',
+    # 'mediumeditor',
+    'ckeditor_uploader',
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# MEDIUM_EDITOR_THEME = 'default'
+# MEDIUM_EDITOR_OPTIONS = {
+# 'toolbar': {
+# 'static': True,
+# 'buttons': [
+# 'bold',
+# 'italic',
+# 'underline',
+# 'strikethrough',
+# 'subscript',
+# 'superscript',
+# 'h1',
+# 'h2',
+# 'h3',
+# 'h4',
+# 'h5',
+# 'h6',
+# ]
+# },
+# 'paste': {
+# 'forcePlainText': True,
+# 'cleanPastedHTML': False,
+# 'cleanReplacements': [],
+# 'cleanAttrs': ['class', 'style', 'dir'],
+# 'cleanTags': ['meta']
+# }
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,3 +154,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
