@@ -12,7 +12,7 @@ class Blogs(models.Model):
     description = models.TextField(blank=False)
     description_html = models.TextField(editable=False,blank=False)
     author = models.CharField(max_length=250)
-    body = RichTextUploadingField()
+    body = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
     upvotes = models.IntegerField(default=0)
 

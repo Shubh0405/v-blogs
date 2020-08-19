@@ -5,5 +5,13 @@ from .models import Blogs,Comments
 # Register your models here.
 
 
-admin.site.register(Blogs)
+class BlogAdmin(admin.ModelAdmin):
+    class Media:
+        css: {
+            "all": ("css/main.css",)
+        }
+
+        js = ("js/blog.js",)
+
+admin.site.register(Blogs,BlogAdmin)
 admin.site.register(Comments)
