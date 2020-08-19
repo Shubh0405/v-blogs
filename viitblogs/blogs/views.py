@@ -7,13 +7,19 @@ from django.views.generic import  (View,TemplateView,
                                   DeleteView)
 from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
     return render(request,'blogs/index.html',{})
 
 def blog_list(request):
+    query = request.GET.get("q",None)
     bloglist = Blogs.objects.all()
+    if query is not None:
+        bloglist = bloglist.filter(
+            Q(title__icontains=query)
+        )
     return render(request,'blogs/blog_list.html',{'bloglist':bloglist})
 
 # class blog_detail(DetailView):

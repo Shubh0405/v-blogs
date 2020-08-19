@@ -1,7 +1,12 @@
 {% extends 'blogs/base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="container">
+  <form method='GET' action="{% url 'blogs:blog_list' %}">
+    <p>Search: <input type='search' name='q' placeholder='Title'></p>
+  </form>
+
   {% for blog in bloglist %}
     <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail" style="height:100px;width:100px;">
     <p><b>{{ blog.title }}</b></p>
