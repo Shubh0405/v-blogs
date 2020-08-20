@@ -10,7 +10,32 @@
   <hr>
   <!-- <p>{{ blog.upvotes }} Upvotes</p> -->
   <a class="btn btn-primary" href="{% url 'blogs:upvote' slug=blog.slug %}"> {{ blog.upvotes }} Upvotes </a>
-  <a class="btn btn-primary" href="" data-target="#ModalCreateComment" data-toggle="modal">Add Comment</a>
+  <br>
+  <br><br>
+  <!-- <a class="btn btn-primary" href="" data-target="#ModalCreateComment" data-toggle="modal">Add Comment</a> -->
+
+  <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
+    {% csrf_token %}
+    <label for="writer">Name:</label>
+    <input type="text" name="writer" placeholder="Enter your name">
+    <br>
+    <label for="text">Your Comment:</label>
+    <input type="text" name="text" placeholder="Enter your comment">
+    <br>
+    <input type="submit" name="" value="Submit" class="btn btn-primary">
+    <!-- <label for="reason"><i class="fal fa-money-check-edit-alt"></i> Reason:</label>
+    <input type="text" name="reason" placeholder='reason'>
+    <hr>
+    <label for="amount"><i class="fas fa-money-check-alt"></i> Amount:</label>
+    <input type="number" name="amount" placeholder='Amount'><br>
+    <hr>
+    <p><i class="far fa-users"></i> Select Splitters:</p>
+    {% for member in members_list %}
+    <input type="checkbox" name="splitter" value='{{ member.username }}'>{{ member.username }}<br>
+    {% endfor %}
+    <br>
+    <input type="submit" class="btn btn-primary" name="" value="Submit"> -->
+  </form>
 
   {% for comment in comments %}
   <hr>
@@ -21,7 +46,7 @@
 
 
 
-<div class="modal fade" tabindex="-1" role="dialog" id="ModalCreateComment" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="ModalCreateComment" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,12 +76,12 @@
             <input type="checkbox" name="splitter" value='{{ member.username }}'>{{ member.username }}<br>
             {% endfor %}
             <br>
-            <input type="submit" class="btn btn-primary" name="" value="Submit"> -->
+            <input type="submit" class="btn btn-primary" name="" value="Submit">
           </form>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 </div>
 {% endblock %}
