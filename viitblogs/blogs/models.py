@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
+# from ckeditor.fields import RichTextField
+# from ckeditor_uploader.fields import RichTextUploadingField
 import misaka
 # Create your models here.
 

@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded",function(event){
 
 tinymce.init({
   selector: '#id_body',
+  skin: "oxide-dark",
+  content_style: 'div { background: black;}',
   plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable',
 
   mobile: {
@@ -39,7 +41,7 @@ tinymce.init({
   autosave_restore_when_empty: false,
   autosave_retention: "2m",
   image_advtab: true,
-  content_css: '//www.tiny.cloud/css/codepen.min.css',
+  content_css: 'dark',
   link_list: [
     { title: 'My page 1', value: 'http://www.tinymce.com' },
     { title: 'My page 2', value: 'http://www.moxiecode.com' }
