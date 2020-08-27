@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogs',
-    'ckeditor',
+    # 'ckeditor',
     # 'mediumeditor',
-    'ckeditor_uploader',
+    # 'ckeditor_uploader',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

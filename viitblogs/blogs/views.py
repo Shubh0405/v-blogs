@@ -46,7 +46,6 @@ def add_comments(request,slug):
             text = request.POST.get('text')
             obj = Comments.objects.create(blog = blog, writer=writer,text=text)
             obj.save()
-            print(obj)
             return HttpResponseRedirect(reverse('blogs:blog_detail',kwargs={'slug':blog.slug}))
         except:
             message.error(request,'Something went wrong!')
