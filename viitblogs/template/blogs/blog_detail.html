@@ -2,86 +2,96 @@
 {% block content %}
 
 <div class="container">
-  <h1>{{ blog.title }}</h1>
-  <h3>Written by: {{ blog.author }}</h3>
-  <p>Created at: {{ blog.created_at }}</p>
-  <hr>
-  {{ blog.body|safe }}
-  <hr>
-  <!-- <p>{{ blog.upvotes }} Upvotes</p> -->
-  <a class="btn btn-primary" href="{% url 'blogs:upvote' slug=blog.slug %}"> {{ blog.upvotes }} Upvotes </a>
-  <br>
-  <br><br>
-  <!-- <a class="btn btn-primary" href="" data-target="#ModalCreateComment" data-toggle="modal">Add Comment</a> -->
-
-  <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
-    {% csrf_token %}
-    <label for="writer">Name:</label>
-    <input type="text" name="writer" placeholder="Enter your name">
-    <br>
-    <label for="text">Your Comment:</label>
-    <input type="text" name="text" placeholder="Enter your comment">
-    <br>
-    <input type="submit" name="" value="Submit" class="btn btn-primary">
-    <!-- <label for="reason"><i class="fal fa-money-check-edit-alt"></i> Reason:</label>
-    <input type="text" name="reason" placeholder='reason'>
+    <h1>{{ blog.title }}</h1>
+    <h3>Written by: {{ blog.author }}</h3>
+    <p>Created at: {{ blog.created_at }}</p>
     <hr>
-    <label for="amount"><i class="fas fa-money-check-alt"></i> Amount:</label>
-    <input type="number" name="amount" placeholder='Amount'><br>
+    {{ blog.body|safe }}
     <hr>
-    <p><i class="far fa-users"></i> Select Splitters:</p>
-    {% for member in members_list %}
-    <input type="checkbox" name="splitter" value='{{ member.username }}'>{{ member.username }}<br>
-    {% endfor %}
+    <form class="like-form" action="{% url 'blogs:like_post'%}" method="POST" id={{blog.id}}>
+        {% csrf_token %}
+        <input type="hidden" name="post_pk" id='post_pk' value={{blog.pk}}>
+        <button class="btn btn-primary like-btn{{blog.id}}">
+            {% if liked %}
+                Unlike
+            {% else %}
+                Like
+            {% endif %}
+        </button>
+    </form>
     <br>
-    <input type="submit" class="btn btn-primary" name="" value="Submit"> -->
-  </form>
+    <br><br>
+    <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
+        {% csrf_token %}
+        <label for="writer">Name:</label>
+        <input type="text" name="writer" placeholder="Enter your name">
+        <br>
+        <label for="text">Your Comment:</label>
+        <input type="text" name="text" placeholder="Enter your comment">
+        <br>
+        <input type="submit" name="" value="Submit" class="btn btn-primary">
+    </form>
 
-  {% for comment in comments %}
-  <hr>
+    {% for comment in comments %}
+    <hr>
     <p>{{ comment.text_html|safe }}</p>
     <p>By: {{ comment.writer }}</p>
     <p>{{ comment.created_at }}</p>
-  {% endfor %}
-
-
-
-<!-- <div class="modal fade" tabindex="-1" role="dialog" id="ModalCreateComment" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Comment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
-            {% csrf_token %}
-            <label for="writer">Name:</label>
-            <input type="text" name="writer" placeholder="Enter your name">
-            <hr>
-            <label for="text">Your Comment:</label>
-            <input type="text" name="text" placeholder="Enter your comment">
-            <br>
-            <input type="submit" name="" value="Submit" class="btn btn-primary">
-            <!-- <label for="reason"><i class="fal fa-money-check-edit-alt"></i> Reason:</label>
-            <input type="text" name="reason" placeholder='reason'>
-            <hr>
-            <label for="amount"><i class="fas fa-money-check-alt"></i> Amount:</label>
-            <input type="number" name="amount" placeholder='Amount'><br>
-            <hr>
-            <p><i class="far fa-users"></i> Select Splitters:</p>
-            {% for member in members_list %}
-            <input type="checkbox" name="splitter" value='{{ member.username }}'>{{ member.username }}<br>
-            {% endfor %}
-            <br>
-            <input type="submit" class="btn btn-primary" name="" value="Submit">
-          </form>
-      </div>
-    </div>
-  </div>
-</div> -->
+    {% endfor %}
 
 </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('.like-form').submit(function(e){
+                e.preventDefault()
+                const post_id = $(this).attr('id')
+                const likeText = $(`.like-btn${post_id}`).text()
+                const trim = $.trim(likeText)
+                const url = $('.like-form').attr('action')
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'post_pk': post_id
+                    },
+
+                    success: function(){
+                        console.log('hello')
+                        $.ajax({
+                            type: 'GET',
+                            url: 'http://127.0.0.1:8000/blogs/serialized/',
+                            success: function(response){
+
+                                $.each(response, function(index,element){
+                                    if (post_id == element.id){
+                                        if (trim == 'Like'){
+                                            $(`.like-btn${post_id}`).html('Unlike')
+                                        } else if( trim == 'Unlike'){
+                                            $(`.like-btn${post_id}`).html('Like')
+                                        } else{
+                                            console.log('error')
+                                        }
+
+                                    }
+                                })
+                            },
+                            error: function(error){
+                                console.log('error')
+                            }
+                        })
+                    },
+
+                    error: function(error){
+                        console.log('error',error)
+                    }
+                })
+            })
+        })
+
+    </script>
+
 {% endblock %}

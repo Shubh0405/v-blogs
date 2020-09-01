@@ -8,10 +8,22 @@
   </form>
 
   {% for blog in bloglist %}
-    <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail" style="height:100px;width:100px;">
+  <div class="blog-cards">
+  <div class="row">
+    <div class="col-md-2">
+      <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail" style="height:100px;width:100px;">
+    </div>
+    <div class="col-md-10">
+      <p><b>{{ blog.title }}</b></p>
+      <p>{{ blog.description_html|safe }} </p>
+      <a class="btn btn-primary" href="{% url 'blogs:blog_detail' slug=blog.slug %}">Read</a>
+    </div>
+  </div>
+  </div>
+    <!-- <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail" style="height:100px;width:100px;">
     <p><b>{{ blog.title }}</b></p>
     <p>{{ blog.description_html|safe }} </p>
-    <a class="btn btn-primary" href="{% url 'blogs:blog_detail' slug=blog.slug %}">Read</a>
+    <a class="btn btn-primary" href="{% url 'blogs:blog_detail' slug=blog.slug %}">Read</a> -->
   {% endfor %}
 </div>
 

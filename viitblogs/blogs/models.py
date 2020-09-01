@@ -5,6 +5,13 @@ from django.utils.text import slugify
 import misaka
 # Create your models here.
 
+class IP_Address(models.Model):
+    ip = models.TextField(default=None)
+
+    def __str__(self):
+        return self.ip
+
+
 class Blogs(models.Model):
     thumbnail_image = models.ImageField(upload_to='thumbnails',blank=False)
     title = models.CharField(max_length=300)
@@ -13,8 +20,8 @@ class Blogs(models.Model):
     description_html = models.TextField(editable=False,blank=False)
     author = models.CharField(max_length=250)
     body = models.TextField()
-    created_at = models.DateTimeField(auto_now=True)
-    upvotes = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    liked = models.ManyToManyField(IP_Address, blank=True, editable=False)
 
     def __str__(self):
         return self.title + ' by ' + self.author

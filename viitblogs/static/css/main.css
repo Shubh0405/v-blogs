@@ -11,3 +11,7 @@ body{
 nav{
   display: flex;
 }
+
+.blog-cards{
+  margin: 100px;
+}
