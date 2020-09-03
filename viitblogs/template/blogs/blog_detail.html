@@ -1,7 +1,11 @@
 {% extends 'blogs/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">
+{% endblock %}
 {% block content %}
 
-<div class="container">
+<!-- <div class="container">
     <h1>{{ blog.title }}</h1>
     <h3>Written by: {{ blog.author }}</h3>
     <p>Created at: {{ blog.created_at }}</p>
@@ -39,7 +43,67 @@
     <p>{{ comment.created_at }}</p>
     {% endfor %}
 
-</div>
+</div> -->
+
+<div class="container">
+      <div class="blog">
+        <h1>{{ blog.title }}</h1>
+        <hr>
+          <div class="col- writer_info">
+            <p><i class="fas fa-feather-alt"></i> By {{ blog.author }}</p>
+            <p><i class="far fa-clock"></i> {{ blog.created_at }}</p>
+          </div>
+        <hr>
+        <br>
+        <div class="blog-content">
+          {{ blog.body|safe }}
+        </div>
+        <hr>
+        <!-- <input type="text" name="" placeholder="Your Name">
+        <br>
+        <input type="text" name="" placeholder="Your thoughts">
+
+        <div class="options">
+          <a href="#"><p><i class="fas fa-arrow-alt-up"></i> Upvote</p></a>
+          <a href="#"><p><i class="far fa-comment"></i> Comment</p></a>
+        </div> -->
+
+        <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
+            {% csrf_token %}
+             <input type="text" name="writer" placeholder="Your name" required>
+             <br>
+             <input type="text" name="text" placeholder="Your thoughts" required>
+             <br>
+             <input type="submit" name="" value="Submit" class="option">
+          </form>
+         <br>
+         <form class="like-form" action="{% url 'blogs:like_post'%}" method="POST" id={{blog.id}}>
+            {% csrf_token %}
+             <input type="hidden" name="post_pk" id='post_pk' value={{blog.pk}}>
+             <button class="option like-btn{{blog.id}}">
+                {% if liked %}
+                    Unlike
+                {% else %}
+                    Like
+                {% endif %}
+             </button>
+         </form>
+         <div class="blog-comments">
+           <div class="row">
+            {% for comment in comments %}
+             <div class="col-12">
+               <div class="comment">
+                <h6><i class="fas fa-user-circle"></i> {{ comment.writer }} . <i>{{ comment.created_at.date }}</i></h6>
+                 <p>{{ comment.text_html|safe }}</p>
+               </div>
+             </div>
+             {% endfor %}
+           </div>
+         </div>
+       </div>
+     </div>
+
+
 {% endblock %}
 {% block script %}
     <script>

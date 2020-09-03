@@ -1,13 +1,19 @@
 {% extends 'blogs/base.html' %}
 {% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/blog_list.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="container">
+
   <form method='GET' action="{% url 'blogs:blog_list' %}">
-    <p>Search: <input type='search' name='q' placeholder='Title'></p>
+    <p id="searchbar"><input type='search' name='q' placeholder='Title'></p>
   </form>
 
-  {% for blog in bloglist %}
+
+  <!-- {% for blog in bloglist %}
   <div class="blog-cards">
   <div class="row">
     <div class="col-md-2">
@@ -20,11 +26,36 @@
     </div>
   </div>
   </div>
-    <!-- <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail" style="height:100px;width:100px;">
-    <p><b>{{ blog.title }}</b></p>
-    <p>{{ blog.description_html|safe }} </p>
-    <a class="btn btn-primary" href="{% url 'blogs:blog_detail' slug=blog.slug %}">Read</a> -->
   {% endfor %}
-</div>
+</div> -->
+
+  {% for blog in bloglist %}
+      <div class="blog_list">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="blog_list_img">
+              <img src="{{ blog.thumbnail_image.url }}" alt="thumbnail">
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="blog_info">
+              <h1>{{ blog.title }}</h1>
+              <p>{{ blog.description_html|safe|truncatewords:40 }}</p>
+              <div class="blog_response">
+                <div class="row">
+                  <div class="col-6">
+                    <p><i class="fas fa-arrow-alt-up"></i> {{ blog.liked.count }} Upvotes</p>
+                  </div>
+                  <div class="col-6">
+                    <p><i class="far fa-comment"></i> {{ blog.comments.count }} Comments</p>
+                  </div>
+                </div>
+              </div>
+              <a href="{% url 'blogs:blog_detail' slug=blog.slug %}"><p class="read_button">Read More</p></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
 
 {% endblock %}
