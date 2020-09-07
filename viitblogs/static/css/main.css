@@ -1,8 +1,13 @@
-body{
+.light{
 	height: 100vh;
 	background-color: #E0E5EC;
 	color: black !important;
 	overflow-x: hidden;
+}
+
+.dark{
+	background-color: #1A1A1A;
+	color: white !important;
 }
 
 nav{
@@ -20,17 +25,15 @@ nav .nav-links h1{
 	list-style: none;
 	display: inline-block;
 	position: relative;
-	box-shadow: 5px 5px 10px 0 #A3B1C6,
- -5px -5px 10px 0 #FFFFFF;
  border-radius: .8rem;
 	padding: 15px;
 	margin: 10px;
 }
 
-nav .nav-links h1:hover{
+/* nav .nav-links h1:hover{
 		box-shadow: inset 5px 5px 10px 0 #A3B1C6,
     inset -5px -5px 10px 0 #FFFFFF;
-}
+} */
 
 nav .nav-links h1 a{
 	text-decoration: none;

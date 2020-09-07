@@ -18,7 +18,7 @@
   border-radius: .8rem;
   box-shadow: 5px 5px 7px 0 #A3B1C6,
  -5px -5px 7px 0 #FFFFFF;
- background-color: #E0E5EC;
+ background: transparent;
 }
 
 input[type="search"]{
@@ -65,5 +65,11 @@ input[type="search"]{
 @media only screen and (max-width: 650px){
   .blog_list{
     width: 90%;
+  }
+  .blog_info{
+    margin: 15px 0px;
+  }
+  .blog_list_img{
+    margin: 10px 0px;
   }
 }

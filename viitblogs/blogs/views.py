@@ -14,7 +14,11 @@ def get_ip(request):
     return ip
 
 def index(request):
-    return render(request,'blogs/index.html',{})
+    blogs = Blogs.objects.all()
+    f_blog = blogs[0]
+    s_blog = blogs[1]
+    t_blog = blogs[2]
+    return render(request,'blogs/index.html',{'f_blog':f_blog,'s_blog':s_blog,'t_blog':t_blog})
 
 def blog_list(request):
     query = request.GET.get("q",None)
