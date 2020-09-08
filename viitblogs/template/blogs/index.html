@@ -1,25 +1,120 @@
 {% extends 'blogs/base.html' %}
-{% block content %}
+{% load static %}
+{% block nav %}
+<nav>
+    <label class="switch">
+        <input type="checkbox" id="darkmode">
+        <span class="slider round"></span>
+    </label>
+    <div class="nav-links">
+        <h1 class="active" ><a href="{% url 'home' %}">HOME</a></h1>
+        <h1><a href="{% url 'blogs:blog_list' %}">BLOG</a></h1>
+    </div>
+</nav>
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
-<div class="container">
-  <!-- <div class="jumbotron"> -->
-    <h1>Welcome to VinnovateIT blog page.</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <!-- </div> -->
-</div>
-<hr>
-<div class="first-blog">
-  <h3>{{ f_blog.title }}</h3>
-  <p>{{ f_blog.description_html|safe }}</p>
-</div>
-<hr>
-<div class="first-blog">
-  <h3>{{ s_blog.title }}</h3>
-  <p>{{ s_blog.description_html|safe }}</p>
-</div>
-<hr>
-<div class="first-blog">
-  <h3>{{ t_blog.title }}</h3>
-  <p>{{ t_blog.description_html|safe }}</p>
-</div>
+{% block content %}
+    <div style="height: 100vh">
+
+    </div>
+
+    <div id="team">
+        <div class="container">
+            <div class="row my-5 h-100">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="row h-100 my-1">
+                      <a href="{% url 'blogs:blog_detail' slug=f_blog.slug %}" class="cards-link">
+                        <div class="card big_card" onclick="location.href='#';" style="cursor: pointer;">
+                            <img class="card-img-top" src="{{ f_blog.thumbnail_image.url }}" alt="Card image cap">
+                            <div class="card-body card3">
+                                <div class="card-text">
+                                    <h2 style="float:none" class="card-title" style=" margin-top:1rem;margin-bottom: 1rem;">{{ f_blog.title }}</h2>
+                                    <br>
+                                    <p>{{ f_blog.description_html|safe|truncatewords:75 }} </p>
+                                </div>
+                            </div>
+                            <div class="container bottom_elements" style=" margin-bottom:1rem;">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <span style="float:left"> <i class="fas fa-globe-americas icon"></i> {{ f_blog.author }}</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <span class="clock"> <i class="fas fa-clock icon"></i> {{ f_blog.created_at.date }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 " style="padding-left: 20px;">
+                    <div class="semi">
+                        <div class="my-1" onclick="location.href='#'" style="cursor: pointer;">
+                          <a href="{% url 'blogs:blog_detail' slug=s_blog.slug %}">
+                            <div class="card h-100" style="">
+
+                                <img class="card-img-top" src="{{ s_blog.thumbnail_image.url }}" alt="Card image cap">
+
+                                <div class="card-body card1">
+
+                                    <p class="card-text">{{ s_blog.title }}</p>
+                                </div>
+
+
+                                <div class="container bottom_elements" style="margin-bottom: 1rem;">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <span style="float:left"> <i class="fas fa-globe-americas icon">
+                                                </i> {{ s_blog.author }}</span></div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <span class="clock"> <i class="fas fa-clock icon"></i> {{ s_blog.created_at.date }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          </a>
+                        </div>
+
+                        <div class="my-1" onclick="location.href='#';" style="cursor: pointer;">
+                          <a href="{% url 'blogs:blog_detail' slug=t_blog.slug %}">
+                            <div class="card h-100" style="">
+
+                                <!--
+                            <div style="display: flex;justify-content:flex-end;margin:1rem;">
+                                <span class="fa-stack fa-1x">
+                                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                                    <i class="fa fa-user fa-stack-1x icon"></i>
+                                </span>
+                            </div>
+-->
+                                <img class="card-img-top" src="{{ t_blog.thumbnail_image.url }}" alt="Card image cap">
+                                <div class="card-body card2">
+                                    <p class="card-text">{{ t_blog.title }}</p>
+                                </div>
+
+                                <div class="container bottom_elements">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <span style="float:left"> <i class="fas fa-globe-americas icon">
+                                                </i> {{ t_blog.author }}</span></div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                            <span class="clock"> <i class="fas fa-clock icon"></i> {{ t_blog.created_at.date }}</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                          </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

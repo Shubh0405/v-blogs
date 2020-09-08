@@ -1,5 +1,17 @@
 {% extends 'blogs/base.html' %}
 {% load static %}
+{% block nav %}
+<nav>
+    <label class="switch">
+        <input type="checkbox" id="darkmode">
+        <span class="slider round"></span>
+    </label>
+    <div class="nav-links">
+        <h1><a href="{% url 'home' %}">HOME</a></h1>
+        <h1><a href="{% url 'blogs:blog_list' %}">BLOG</a></h1>
+    </div>
+</nav>
+{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">
 {% endblock %}
@@ -47,11 +59,18 @@
 
 <div class="container">
       <div class="blog">
-        <h1>{{ blog.title }}</h1>
+        <h2>{{ blog.title }}</h2>
         <hr>
-          <div class="col- writer_info">
-            <p><i class="fas fa-feather-alt"></i> By {{ blog.author }}</p>
-            <p><i class="far fa-clock"></i> {{ blog.created_at }}</p>
+        <div class="row">
+              <div class="col-3 col-md-1">
+                  <a href="https://vinnovateit.com/"><img src="{% static 'img/VinnovateIT-shape.png' %}" alt="" class="blog-detail-icon"></a>
+              </div>
+              <div class="col-9 col-md-11">
+                  <div class="writer_info">
+                      <p> By <b>{{ blog.author }}</b></p>
+                      <p>{{ blog.created_at }}</p>
+                  </div>
+              </div>
           </div>
         <hr>
         <br>
@@ -59,16 +78,24 @@
           {{ blog.body|safe }}
         </div>
         <hr>
-        <!-- <input type="text" name="" placeholder="Your Name">
-        <br>
-        <input type="text" name="" placeholder="Your thoughts">
 
-        <div class="options">
-          <a href="#"><p><i class="fas fa-arrow-alt-up"></i> Upvote</p></a>
-          <a href="#"><p><i class="far fa-comment"></i> Comment</p></a>
-        </div> -->
+        <div class="buttons">
+          <form class="like-form" action="{% url 'blogs:like_post'%}" method="POST" id={{blog.id}}>
+             {% csrf_token %}
+              <input type="hidden" name="post_pk" id='post_pk' value={{blog.pk}}>
+              <button class="blog-button like-btn{{blog.id}}">
+                 {% if liked %}
+                     Dislike
+                 {% else %}
+                     Like
+                 {% endif %}
+              </button>
+          </form>
 
-        <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
+                <p class="blog-button" id="comment">Comment</p>
+        </div>
+
+        <!-- <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
             {% csrf_token %}
              <input type="text" name="writer" placeholder="Your name" required>
              <br>
@@ -87,13 +114,26 @@
                     Like
                 {% endif %}
              </button>
-         </form>
+         </form> -->
+
+
+         <div class="hide" id="comment-section">
+         <form action="{% url 'blogs:add_comments' slug=blog.slug %}" method="post">
+             {% csrf_token %}
+              <input type="text" name="writer" placeholder="Your name" required>
+              <br>
+              <input type="text" name="text" placeholder="Your thoughts" required>
+              <br>
+              <input type="submit" name="" value="Submit" class="blog-button">
+           </form>
+           </div>
+
          <div class="blog-comments">
            <div class="row">
             {% for comment in comments %}
              <div class="col-12">
                <div class="comment">
-                <h6><i class="fas fa-user-circle"></i> {{ comment.writer }} . <i>{{ comment.created_at.date }}</i></h6>
+                <h6><i class="fas fa-user-circle"></i> {{ comment.writer }} . <i>{{ comment.created_at }}</i></h6>
                  <p>{{ comment.text_html|safe }}</p>
                </div>
              </div>
@@ -104,9 +144,14 @@
      </div>
 
 
+
 {% endblock %}
 {% block script %}
     <script>
+      document.getElementById('comment').addEventListener('click', function() {
+            document.getElementById('comment-section').classList.toggle('hide');
+        })
+
         $(document).ready(function(){
             $('.like-form').submit(function(e){
                 e.preventDefault()
@@ -133,8 +178,8 @@
                                 $.each(response, function(index,element){
                                     if (post_id == element.id){
                                         if (trim == 'Like'){
-                                            $(`.like-btn${post_id}`).html('Unlike')
-                                        } else if( trim == 'Unlike'){
+                                            $(`.like-btn${post_id}`).html('Dislike')
+                                        } else if( trim == 'Dislike'){
                                             $(`.like-btn${post_id}`).html('Like')
                                         } else{
                                             console.log('error')

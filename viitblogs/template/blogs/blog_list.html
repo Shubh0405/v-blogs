@@ -1,6 +1,17 @@
 {% extends 'blogs/base.html' %}
 {% load static %}
-
+{% block nav %}
+<nav>
+    <label class="switch">
+        <input type="checkbox" id="darkmode">
+        <span class="slider round"></span>
+    </label>
+    <div class="nav-links">
+        <h1><a href="{% url 'home' %}">HOME</a></h1>
+        <h1 class="active"><a href="{% url 'blogs:blog_list' %}">BLOG</a></h1>
+    </div>
+</nav>
+{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/blog_list.css' %}">
 {% endblock %}
@@ -57,5 +68,7 @@
         </div>
       </div>
     {% endfor %}
+
+    
 
 {% endblock %}

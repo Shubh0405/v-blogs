@@ -1,164 +1,199 @@
-.light{
-	height: 100vh;
-	background-color: #E0E5EC;
-	color: black !important;
-	overflow-x: hidden;
+body {
+    height: 100vh;
+    background-color: rgb(224, 229, 236);
 }
 
-.dark{
-	background-color: #1A1A1A;
-	color: white !important;
+a, a:hover, a:focus, a:active {
+      text-decoration: none !important;
+      color: inherit !important;
+ }
+
+nav {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 1.5rem;
+
 }
 
-nav{
-	padding: 0;
-	margin: 0;
+nav .nav-links {
+    position: relative;
+    float: right;
+    right: 0;
 }
 
-nav .nav-links{
-	position: relative;
-	float: right;
-	right: 0;
+nav .nav-links h1 {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    /* box-shadow: 5px 5px 10px 0 rgba(163,177,198, 0.8),
+ -5px -5px 10px 0 rgba( 255,255,255,0.8); */
+    border-radius: .8rem;
+    padding: 15px;
+
 }
 
-nav .nav-links h1{
-	list-style: none;
-	display: inline-block;
-	position: relative;
- border-radius: .8rem;
-	padding: 15px;
-	margin: 10px;
+nav .nav-links h1:hover {
+    /* box-shadow: inset 5px 5px 10px 0 rgba(163,177,198, 0.8),
+    inset -5px -5px 10px 0 rgba(255,255,255, 0.8);
+*/
 }
 
-/* nav .nav-links h1:hover{
-		box-shadow: inset 5px 5px 10px 0 #A3B1C6,
-    inset -5px -5px 10px 0 #FFFFFF;
-} */
-
-nav .nav-links h1 a{
-	text-decoration: none;
-	color: black;
-	font-size: 25px;
-  font-weight: bold;
-	display: flex;
+nav .nav-links h1 a {
+    text-decoration: none;
+    color: rgb(100, 100, 100);
+      font-size:1.8rem;
+    font-weight: bold;
+    display: flex;
 }
 
-nav .nav-links h1 a:after{
-	content: '';
-	position: absolute;
-	bottom: 5px;
-	left: 5px;
-	width: 45%;
-	height: 6px;
-	transform: scaleX(0.15);
-	background-color: black;
-	transform-origin: left;
-	transition: all 0.5s;
+nav .nav-links h1 a:after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 45%;
+    height: 6px;
+    transform: scaleX(0.15);
+    background-color: rgb(100, 100, 100);
+    transform-origin: left;
+    transition: all 0.5s;
 }
 
 
-nav .nav-links h1 a:hover:after{
-	transform: scaleX(1);
+nav .nav-links h1 a:hover:after {
+    transform: scaleX(1);
 }
-
+nav .nav-links>.active>a:after {
+   visibility: visible;
+ -webkit-transform: scaleX(1);
+ transform: scaleX(1);
+}
 .switch {
-	position: relative;
-  display: inline-block;
-  width: 70px;
-  height: 40px;
-	margin: 10px;
-	margin-top: 15px;
-	/* box-shadow: 5px 5px 10px 0 rgba(119,119,119, 0.8),
- -5px -5px 10px 0 rgba( 230,230,230,0.8); */
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 40px;
+    margin: 10px;
+    margin-top: 15px;
+    /* box-shadow: 5px 5px 10px 0 rgba(163,177,198, 0.8),
+ -5px -5px 10px 0 rgba( 255,255,255,0.8); */
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 
 }
 
-.slider.round{
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #E0E5EC;
-  -webkit-transition: .4s;
-  transition: .4s;
-	border-radius: 40px;
-	box-shadow: 5px 5px 10px 0 #A3B1C6,
- -5px -5px 10px 0 #FFFFFF;
+.slider.round {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(224, 229, 236);
+    -webkit-transition: .5s;
+    transition: .5s;
+    border-radius: 40px;
+    box-shadow: 5px 5px 10px 0 rgba(163, 177, 198, 0.8),
+        -5px -5px 10px 0 rgba(255, 255, 255, 0.8);
+
 }
 
 .slider.round:before {
-  position: absolute;
-  content: "";
-  height: 30px;
-  width: 30px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-	/* box-shadow: 5px 5px 10px 0 rgba(119,119,119, 0.8),
- -5px -5px 10px 0 rgba( 230,230,230,0.8); */
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .5s;
+    transition: .5s;
+    /* box-shadow: 5px 5px 10px 0 rgba(163,177,198, 0.8),
+ -5px -5px 10px 0 rgba( 255,255,255,0.8); */
 }
 
 input:checked + .slider.round {
-  background-color: black;
+    background-color: rgb(48, 50, 52);
 }
 
 input:focus + .slider.round {
-	box-shadow: 5px 5px 10px 0 #A3B1C6,
- -5px -5px 10px 0 #FFFFFF;
+    box-shadow: 5px 5px 10px 0 rgba(163, 177, 198, 0.8),
+        -5px -5px 10px 0 rgba(255, 255, 255, 0.8);
 }
 
 input:checked + .slider.round:before {
-  -webkit-transform: translateX(40px);
-  -ms-transform: translateX(40px);
-  transform: translateX(40px);
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 40px;
-	height: 40px;
-	width: 80px;
-	box-shadow: 5px 5px 10px 0 #A3B1C6,
- -5px -5px 10px 0 #FFFFFF;
+    border-radius: 40px;
+        box-shadow: 2px 2px 5px 0 rgba(163, 177, 198, 0.8),
+        -2px -2px 5px 0 rgba(255, 255, 255, 0.8);
 }
 
 .slider.round:before {
-  border-radius: 50%;
-	height: 30px;
-	width: 30px;
+    border-radius: 50%;
+    color: rgb(161, 162, 164);
+}
+
+.footer-area{
+  width: 100%;
+  background-color: transparent;
+  padding: 30px 0px;
+  display: block;
+}
+
+.footer-area .footer-info{
+  margin-left: 30px;
+}
+
+.footer-area address{
+  margin-top: 20px;
+}
+
+.footer-area .social-icons{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-area .social-icons a i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+
+.footer-area img{
+
+  width: 100%;
+}
+
+.footer-area .copyright{
+  margin: 0;
+  padding: 30px 0px;
+  font-size: 15px;
+  text-align: center;
+  align-items: center;
 }
 
 
-@media only screen and (max-width: 600px){
-	nav .nav-links h1 a{
-		font-size: 20px;
-	}
-	nav .nav-links h1{
-		padding: 10px;
-		margin: 10px 5px;
-	}
-	.slider.round{
-		border-radius: 30px;
-		height: 30px;
-		width: 60px;
-	}
-	.slider.round:before{
-		height: 25px;
-		width: 25px;
-	}
-	input:checked + .slider.round:before {
-	  -webkit-transform: translateX(26px);
-	  -ms-transform: translateX(26px);
-	  transform: translateX(26px);
-	}
+.dark-mode {
+    background-color: rgb(48, 50, 52);
+    color: rgb(161, 162, 164);
+    /*    background-color: rgb(26,26,26);     */
+
+}
+
+.dark-mode nav .nav-links h1 a {
+    color: rgb(161, 162, 164);
+}
+
+.dark-mode nav .nav-links h1 a:after {
+    background-color: rgb(161, 162, 164);
 }

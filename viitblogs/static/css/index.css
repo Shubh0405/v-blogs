@@ -1,0 +1,112 @@
+#team {
+    min-height: 100vh;
+    /* max-height: 100vh; */
+    transition-duration: 0.5s;
+    color: rgb(100, 100, 100);
+    font-size: 1rem;
+    position: relative;
+}
+
+#team .icon {
+    color: rgb(11, 155, 202);
+}
+
+#team img{
+    border-radius: .8rem;
+    box-shadow: 5px 5px 7px 0 rgba(119, 119, 119, 0.8),
+        -5px -5px 7px 0 rgba(255, 255, 255, 0.8);
+    margin-top: 1rem;
+
+}
+
+#team .fa-circle {
+    color: rgb(179, 179, 179);
+}
+
+#team .card{
+    margin: 0.7rem;
+    transition: box-shadow .5s;
+    background-color: #afd275;
+    background: transparent;
+    padding: 1.5rem 2rem 2rem;
+
+    box-shadow: 10px 10px 15px 0 rgba(163, 177, 198, 0.8),
+        -10px -10px 15px 0 rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 1.4rem;
+    overflow: hidden;
+
+}
+
+#team .card-body{
+    display: grid;
+}
+
+#team .card:hover{
+    box-shadow: inset 10px 10px 15px 0 rgba(163, 177, 198, 0.8),
+        inset -10px -10px 15px 0 rgba(255, 255, 255, 0.8);
+}
+
+#team .bottom_elements{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#team .big_card {
+    font-size: 1.2rem;
+    /* line-height: 1.5; */
+}
+
+#team .semi {
+    display: flex;
+    flex-direction: column;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+@media only screen and (max-width: 990px) and (min-width:768px) {
+    #team .semi {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+    }
+    /* #team .card{
+      padding: .5rem 1rem 1rem;
+    } */
+}
+
+@media only screen and (max-width: 650px){
+  #team{
+    font-size: 1rem;
+  }
+  #team .card{
+    padding: .5rem;
+  }
+  #team img{
+    margin: .5rem;
+  }
+}
+
+.dark-mode #team {
+    color: rgb(161, 162, 164);
+}
+
+.dark-mode #team img {
+    box-shadow: 5px 5px 7px 0 rgba(73, 73, 73, 0.8),
+        -5px -5px 7px 0 rgba(0, 0, 0, 0.8);
+
+}
+
+.dark-mode #team .card {
+    box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.8),
+        -6px -6px 8px 0 rgba(73, 73, 73, 0.8);
+
+
+}
+
+.dark-mode #team .card:hover {
+    box-shadow: inset 6px 6px 8px 0 rgba(73, 73, 73, 0.8),
+        inset -6px -6px 8px 0 rgba(0, 0, 0, 0.8);
+}

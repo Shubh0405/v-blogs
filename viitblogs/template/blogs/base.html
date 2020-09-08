@@ -20,34 +20,62 @@
     {% endblock %}
 
   </head>
-  <body id="fw" class="light">
+  <body id="body">
 
+    {% block nav %}
+    {% endblock %}
 
-    <nav>
-          <label class="switch">
-            <input type="checkbox" class="dark_tgg">
+    <!-- <nav>
+        <label class="switch">
+            <input type="checkbox" id="darkmode">
             <span class="slider round"></span>
-          </label>
-          <div class="nav-links">
-            <h1><a href="{% url 'home' %}">HOME</a></h1>
+        </label>
+        <div class="nav-links">
+            <h1 class="active" ><a href="{% url 'home' %}">HOME</a></h1>
             <h1><a href="{% url 'blogs:blog_list' %}">BLOG</a></h1>
-          </div>
-    </nav>
+        </div>
+    </nav> -->
 
     {% block content %}
     {% endblock %}
+
+    <div class="footer-area">
+     <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+            <img src="{% static 'img/VIT-SITE-school-logo.png' %}" alt="">
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="footer-info">
+            <address>
+              Cognizant Research Laboratory <br>
+              SJT 1st Floor <br>
+              VIT Vellore <br>
+              Tamil Nadu <br>
+              (+91) 887 0855 940 <br>
+            </address>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/VinnovateIT/"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.instagram.com/VinnovateIT/"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/v-innovate-it/"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/VinnovateIT/"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p><i class="far fa-copyright"></i>VinnovateIT,Vellore Institute Of Technology</p>
+    </div>
+  </div>
+
+
 
     {% block script %}
     {% endblock %}
 
     <script type="text/javascript" src="{% static 'js/prism.js' %}"></script>
-    <script type="text/javascript">
-      document.getElementsByClassName('dark_tgg')[0].addEventListener('click',function(){
-        console.log('hello');
-        document.getElementById('fw').classList.toggle('light');
-        document.getElementById('fw').classList.toggle('dark');
-      });
-    </script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
   </body>
 </html>
