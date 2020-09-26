@@ -17,9 +17,35 @@
 {% endblock %}
 
 {% block content %}
-    <div style="height: 100vh">
+<div class="upper">
+  <div class="upper-text">
+    <h1>V-Blogs</h1>
+    <h5>One spot for all VinnovateIT Blogs</h5>
+  </div>
+  <div class="upper-img">
+    <img src="{% static 'img/VinnovateIT-white-text.png' %}" alt="vinnovatelogo">
+  </div>
+</div>
 
-    </div>
+<div class="titles">
+  <p>About Us</p>
+</div>
+
+<div class="container">
+<div class="about-us">
+  <p>VinnovateIT is an OFFICIAL innovation and incubation lab of SITE School.
+VinnovateIT is a one-stop destination from all digitally curious Homosapiens.
+We are a group of like-minded people looking for some technical trouble in life.
+Learning from our mistakes and those of others is our motto and nectar of innovation is our diet.
+Looking through problems as opportunities to learn and improve is what keeps us going.So be ready to immerse yourself in an technically interdependent ecosystem we call VinnovateIT.
+Simple, smart , unique and efficient ideas to solve problems, with effective implementation is something that we strongly believe in.
+Being a technical Lab based club, our vision is to consistently deliver the best blogs based on various tech blogs.</p>
+</div>
+</div>
+
+<div class="titles">
+  <p>Our Recent Blogs</p>
+</div>
 
     <div id="team">
         <div class="container">
@@ -115,6 +141,22 @@
             </div>
         </div>
     </div>
+
+    <div class="titles">
+      <p>Check Amigos</p>
+    </div>
+
+  <div class="container">
+    <div class="amigos">
+      <div class="amigo-logo">
+        <img src="{% static 'img/amigos-logo.svg' %}" alt="">
+      </div>
+      <div class="amigo-info">
+        <p>Never got to hangout with the “tribe” you thought you'd make during your college life? Going bonkers sitting alone at home? Well wait no more……. VinnovateIT presents you the revamped form of Omegle exclusively for VIT which we like to call <br> <a href="https://amigos.vinnovateit.com/">Amigos</a>.</p>
+      </div>
+    </div>
+  </div>
+
 
 
 {% endblock %}

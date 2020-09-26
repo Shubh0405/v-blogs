@@ -1,3 +1,55 @@
+.upper{
+  margin: 0px;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upper .upper-text{
+  text-align: right;
+  flex-direction: column;
+  margin-right: 35px;
+}
+
+/* .upper .upper-text h1,h5{
+  font-size: 40px;
+} */
+
+.upper .upper-img{
+  height: 300px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  border-radius: 50%;
+}
+
+.upper .upper-img img{
+  height: 300px;
+  width: 300px;
+}
+
+.titles{
+  align-items: center;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.titles p{
+  display: inline-block;
+  margin: auto;
+  padding: 10px 20px;
+  border-bottom: 5px solid lightblue;
+  font-size: 40px;
+}
+
+.about-us{
+  padding: 25px 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
 #team {
     min-height: 100vh;
     /* max-height: 100vh; */
@@ -62,8 +114,33 @@
     flex-direction: column;
 }
 
-a{
+#team a{
   text-decoration: none !important;
+}
+
+.amigos{
+  padding: 20px 0px;
+  display: flex;
+}
+
+.amigos .amigo-logo{
+  align-items: center;
+  justify-content: center;
+}
+
+.amigos .amigo-logo img{
+  height: 35vh;
+  width: 45vw;
+  margin: 70px 0px;
+}
+
+.amigos .amigo-info{
+  margin: 30px 0px;
+  font-size: 20px;
+}
+
+.amigos .amigo-info p a{
+  color: lightblue;
 }
 
 @media only screen and (max-width: 990px) and (min-width:768px) {
@@ -75,6 +152,41 @@ a{
     /* #team .card{
       padding: .5rem 1rem 1rem;
     } */
+}
+
+
+@media only screen and (max-width: 1000px){
+  .amigos{
+    flex-direction: column;
+  }
+  .amigos .amigo-logo img{
+    height: 30vh;
+    width: 80vw;
+    margin: auto;
+  }
+  .amigos .amigo-info{
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:700px){
+  .upper{
+    flex-direction: column-reverse;
+  }
+  .upper .upper-text{
+    text-align: center;
+    margin-right: 0;
+    margin-top: 25px;
+  }
+  .upper .upper-img{
+    height: 250px;
+    width: 250px;
+    margin-top: 20px;
+  }
+  .upper .upper-img img{
+    height: 250px;
+    width: 250px;
+  }
 }
 
 @media only screen and (max-width: 650px){
@@ -90,7 +202,7 @@ a{
 }
 
 .dark-mode #team {
-    color: rgb(161, 162, 164);
+    color: rgba(255,255,255,0.8);
 }
 
 .dark-mode #team img {
@@ -102,8 +214,6 @@ a{
 .dark-mode #team .card {
     box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.8),
         -6px -6px 8px 0 rgba(73, 73, 73, 0.8);
-
-
 }
 
 .dark-mode #team .card:hover {

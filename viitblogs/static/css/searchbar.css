@@ -56,3 +56,9 @@ input::-webkit-input-placeholder {
 	box-shadow: inset 2px 2px 5px 0 rgba(73, 73, 73, 0.8),
 			inset -2px -2px 5px 0 rgba(0, 0, 0, 0.8) !important;
 }
+
+.dark-mode input[type=search]{
+	color: white !important;
+	box-shadow: inset 2px 2px 5px 0 rgba(73, 73, 73, 0.8),
+			inset -2px -2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+}
