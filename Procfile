@@ -1,1 +1,1 @@
-web: gunicorn viitblogs.viitblogs.wsgi --log-file -
+gunicorn --log-file=- viitblogs.viitblogs.wsgi:application
