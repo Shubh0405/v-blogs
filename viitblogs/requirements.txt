@@ -1,0 +1,13 @@
+asgiref==3.2.10
+cffi==1.14.2
+Django==3.1.1
+django-ckeditor==6.0.0
+django-js-asset==1.2.2
+django-misaka==0.2.1
+houdini.py==0.1.0
+misaka==2.1.1
+Pillow==7.2.0
+pycparser==2.20
+Pygments==2.6.1
+pytz==2020.1
+sqlparse==0.3.1

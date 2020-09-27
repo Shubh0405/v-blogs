@@ -140,7 +140,7 @@
 }
 
 .amigos .amigo-info p a{
-  color: lightblue;
+  color: lightblue !important;
 }
 
 @media only screen and (max-width: 990px) and (min-width:768px) {
@@ -196,9 +196,9 @@
   #team .card{
     padding: .5rem;
   }
-  #team img{
+  /* #team img{
     margin: .5rem;
-  }
+  } */
 }
 
 .dark-mode #team {
