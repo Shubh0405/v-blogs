@@ -1,2 +1,2 @@
 # V-Blogs
-Official Blog website for VinnovateIT
+Official Blog website of VinnovateIT
