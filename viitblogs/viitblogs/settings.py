@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 STATIC_DIR = os.path.join(BASE_DIR,'static')
@@ -26,9 +27,9 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'eb5ee18%3)#(*9)v2k=v0+3#x7=xz-5a6e#q*t&ya)o79=a+3='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['v-blogs.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,7 +79,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoice.middleware.WhiteNoiceMiddleware',
+    # 'whitenoice.middleware.WhiteNoiceMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -162,3 +163,4 @@ STATICFILES_DIRS = [STATIC_DIR,]
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+django_heroku.settings(locals())
