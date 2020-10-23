@@ -27,7 +27,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'eb5ee18%3)#(*9)v2k=v0+3#x7=xz-5a6e#q*t&ya)o79=a+3='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://v-blogs.herokuapp.com','127.0.0.1']
 
@@ -158,5 +158,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
