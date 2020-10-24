@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor',
     # 'mediumeditor',
     'ckeditor_uploader',
+    'storages'
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -152,6 +153,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+AWS_ACCESS_KEY_ID = 'ASIAQJISCATERZ6JBYVI'
+AWS_SECRET_ACCESS_KEY = '2pnXVMTg01RK5twMJ0ISAGglvewGxsshDxmBflnr'
+AWS_STORAGE_BUCKET_NAME = 'v-blogs'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
